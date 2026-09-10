@@ -1,38 +1,67 @@
 <!DOCTYPE html>
 <html>
+    <body>
+        <style>
+            div {
+                text-align: center;
+                background-color: rgb(168, 150, 209);
+                padding: 50px;
+                border: 10px double #120030;
+            }
+        </style>
+        <div>
+<h1>Book Recommendation</h1>
 
-<body>
+<p>Enter your name:</p>
+<input id="name">
 
-<h2>JavaScript: Variables</h2>
+<p>Choose a genre:</p>
+
+<select id="genre">
+    <option value="fantasy">Fantasy</option>
+    <option value="romance">Romance</option>
+    <option value="horror">Horror</option>
+</select>
+
+<br><br>
+
+<button onclick="pickBook()">Pick My Book</button>
+
+<p id="result"></p>
 
 <script>
 
-var name = "Aaliyah";
-
-{
-    let age = 24;
-    console.log(age);
-}
-
-let x = 10;
-let y = 5;
-
-console.log(x + y);
-console.log(x - y);
-console.log(x * y);
-console.log(x / y);
-
-let favoriteColor = "Green";
-console.log(favoriteColor);
-
-const person = {
-    name: "Aaliyah Partida",
-    age: 24
+let book = {
+    title: "Harry Potter",
+    genre: "Fantasy",
+    publication: 1997
 };
 
-console.log(person);
+function getBook(genre) {
+    if (genre == "fantasy") {
+        return "Harry Potter";
+    } else if (genre == "romance") {
+        return "The Notebook";
+    } else if (genre == "horror") {
+        return "It";
+    } else {
+        return "Unknown Genre";
+    }
+}
 
-console.log(name);
+function makeMessage(name, book) {
+    return name.toUpperCase() + ", your book is ... " + book + "!";
+}
+
+function pickBook() {
+    let name = document.getElementById("name").value;
+    let genre = document.getElementById("genre").value;
+
+    let bookChoice = getBook(genre);
+    let message = makeMessage(name, bookChoice);
+
+    document.getElementById("result").innerHTML = message;
+}
 
 </script>
 
