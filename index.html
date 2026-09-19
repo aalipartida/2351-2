@@ -1,69 +1,146 @@
 <!DOCTYPE html>
+
 <html>
-    <body>
-        <style>
-            div {
-                text-align: center;
-                background-color: rgb(168, 150, 209);
-                padding: 50px;
-                border: 10px double #120030;
-            }
-        </style>
-        <div>
-<h1>Book Recommendation</h1>
 
-<p>Enter your name:</p>
-<input id="name">
+<body>
 
-<p>Choose a genre:</p>
+<style>
 
-<select id="genre">
-    <option value="fantasy">Fantasy</option>
-    <option value="romance">Romance</option>
-    <option value="horror">Horror</option>
-</select>
-
-<br><br>
-
-<button onclick="pickBook()">Pick My Book</button>
-
-<p id="result"></p>
-
-<script>
-
-let book = {
-    title: "Harry Potter",
-    genre: "Fantasy",
-    publication: 1997
-};
-
-function getBook(genre) {
-    if (genre == "fantasy") {
-        return "Harry Potter";
-    } else if (genre == "romance") {
-        return "The Notebook";
-    } else if (genre == "horror") {
-        return "It";
-    } else {
-        return "Unknown Genre";
+    div {
+        text-align: center;
+        background-color: rgb(168, 150, 209);
+        padding: 50px;
+        border: 10px double #120030;
     }
-}
 
-function makeMessage(name, book) {
-    return name.toUpperCase() + ", your book is ... " + book + "!";
-}
+</style>
 
-function pickBook() {
-    let name = document.getElementById("name").value;
-    let genre = document.getElementById("genre").value;
+<div>
 
-    let bookChoice = getBook(genre);
-    let message = makeMessage(name, bookChoice);
+    <h1>Book Recommendation</h1>
 
-    document.getElementById("result").innerHTML = message;
-}
+    <p>Enter your name:</p>
 
-</script>
+    <input id="name">
+
+    <p>Choose a genre:</p>
+
+    <select id="genre">
+        <option value="psychological">Psychological Fiction</option>
+        <option value="fantasy">Fantasy</option>
+        <option value="romance">Romance</option>
+        <option value="horror">Horror</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="pickBook()">Pick My Book</button>
+
+    <p id="result"></p>
+
+    <script>
+
+        let book = {
+            title: "American Psycho",
+            genre: "Psychological Fiction",
+            publication: 1991,
+            pages: 399
+        };
+
+        let book2 = {
+            title: "Harry Potter",
+            genre: "Fantasy",
+            publication: 1997,
+            pages: 309
+        };
+
+        let book3 = {
+            title: "The Notebook",
+            genre: "Romance",
+            publication: 1996,
+            pages: 214
+        };
+
+        let book4 = {
+            title: "It",
+            genre: "Horror",
+            publication: 1986,
+            pages: 1138
+        };
+
+        function getBook(genre) {
+
+            if (genre == "psychological") {
+                return book;
+
+            } else if (genre == "fantasy") {
+                return book2;
+
+            } else if (genre == "romance") {
+                return book3;
+
+            } else if (genre == "horror") {
+                return book4;
+
+            } else {
+                return book;
+            }
+        }
+        function makeMessage(name, book) {
+
+            return name.toUpperCase()
+                + ", your book is ... "
+                + book.title + "!";
+
+        }
+        function pickBook() {
+
+            let name = document.getElementById("name").value;
+
+            let genre = document.getElementById("genre").value;
+
+            let bookChoice = getBook(genre);
+
+
+            let genreMessage;
+
+            switch (genre) {
+
+                case "psychological":
+                    genreMessage = "You chose a psychological fiction book.";
+                    break;
+
+                case "fantasy":
+                    genreMessage = "You chose a fantasy book.";
+                    break;
+
+                case "romance":
+                    genreMessage = "You chose a romance book.";
+                    break;
+
+                case "horror":
+                    genreMessage = "You chose a horror book.";
+                    break;
+
+                default:
+                    genreMessage = "You chose an unknown genre.";
+
+            }
+            let pageCount = bookChoice.pages.toFixed(2);
+
+            let message = makeMessage(name, bookChoice)
+                + " " + genreMessage
+                + " Page count: " + pageCount;
+
+            document.getElementById("result").innerHTML = message;
+
+            console.log(message);
+
+        }
+
+    </script>
+
+</div>
 
 </body>
 
